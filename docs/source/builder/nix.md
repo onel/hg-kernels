@@ -10,6 +10,24 @@ We recommend installing Nix in the following way:
 
 ## Getting started
 
+### Migration from kernel-builder repository
+
+If you were previously using the `kernel-builder` repository directly, you need to update your `flake.nix` file to reference the new location. The `kernel-builder` repository has been merged into the `kernels` repository.
+
+Update the `inputs` section in your `flake.nix`:
+
+```nix
+# Old URL (no longer supported)
+builder.url = "github:huggingface/kernel-builder";
+
+# New URL
+builder.url = "github:huggingface/kernels";
+```
+
+After updating the URL, run `nix flake update` to update your `flake.lock` file.
+
+### Setting up your kernel repository
+
 The easiest way get all the Nix functionality is by putting a
 `flake.nix` in your kernel repository. To do so, copy
 [`examples/relu/flake.nix`](https://github.com/huggingface/kernels/blob/main/builder/examples/relu/flake.nix) into the
